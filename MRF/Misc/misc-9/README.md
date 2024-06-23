@@ -27,6 +27,9 @@ REACT_APP_METEORITE_STRIKE_DATASET="https://data.nasa.gov/resource/y77d-th95.jso
 ```
 
 ```js
+// install the dotenv with npm
+require('dotenv').config();
+
 fetch(process.env.REACT_APP_METEORITE_STRIKE_DATASET)
 .then((response) => {
   return response.json();
@@ -51,9 +54,15 @@ process.env, however, is not available in a browser environment.
 
 ## links
 
+⁕
+[Javascript Environment Variables: Tips, Tricks, And Best Practices](https://onboardbase.com/blog/javascript-environment-variables/)
+
+⁕
 [Environment Variables in JavaScript: process.env](https://dmitripavlutin.com/environment-variables-javascript/)
+
 ⁕
 [An Introduction to Environment Variables and How to Use Them](https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa)
+
 ⁕
 [How to read environment variables from Node.js](https://nodejs.org/en/learn/command-line/how-to-read-environment-variables-from-nodejs)
 
