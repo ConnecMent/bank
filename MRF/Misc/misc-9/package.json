@@ -1,0 +1,14 @@
+{
+  "name": "misc-9",
+  "version": "1.0.0",
+  "description": "issue: [#9](https://github.com/ConnecMent/bank/issues/9)",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "author": "Mr MRF Dev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
