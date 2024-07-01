@@ -1,0 +1,11 @@
+{
+  "name": "js-1",
+  "version": "1.0.0",
+  "description": "Mr MRF Dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Mr MRF Dev",
+  "license": "MIT"
+}
