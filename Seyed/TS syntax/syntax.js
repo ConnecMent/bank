@@ -1,0 +1,115 @@
+// add number a to b
+function add(a, b) {
+    return a + b;
+}
+// flip a coin and log the result (head or tail)
+// define enum for return type CoinSide
+var CoinSide;
+(function (CoinSide) {
+    CoinSide[CoinSide["head"] = 0] = "head";
+    CoinSide[CoinSide["tail"] = 1] = "tail";
+})(CoinSide || (CoinSide = {}));
+function flipACoin() {
+    if (Math.random() % 2 == 0) {
+        return CoinSide.head;
+    }
+    else {
+        return CoinSide.tail;
+    }
+}
+// concat two strings
+function concat(a, b) {
+    return a.concat(b);
+}
+// 2^x = ?
+function power2(x) {
+    return BigInt(Math.pow(2, x));
+}
+function getUser(firstName, lastName) {
+    var x = {
+        Fname: firstName,
+        Lname: lastName
+    };
+    return x;
+}
+// greet someone!
+// e.g. greet('ConnecMent') is "Hello, ConnecMent! Hope you the best."
+function greet(name) {
+    console.log("Hello, " + name + "! Hope you the best.");
+}
+// get array of n random numbers
+function getNRandomNumbers1(n) {
+    var save = [];
+    for (var i = 0; i < n; i++) {
+        save.push(Math.random());
+    }
+    return save;
+}
+// get sorted array of n random numbers, in range min to max
+function getNRandomNumbers2(n, min, max) {
+    var save = [];
+    for (var i = 0; i < n; i++) {
+        save.push(Math.random() * (max - min) + min);
+    }
+    return save.sort(function (a, b) { return a - b; });
+}
+// log current time with a x seconds interval, for n seconds
+function logCurrentTime(x, n) {
+    var intervalId = setInterval(function () {
+        console.log(new Date().toLocaleTimeString());
+    }, x * 1000);
+    setTimeout(function () {
+        clearInterval(intervalId);
+    }, n * 1000);
+}
+// higher order function: call the function in the parameters list
+// e.g. callFuncNTimes(flipACoin, 3) calls flipACoin 3 times
+function callFuncNTimes(func, n) {
+    for (var i = 0; i < n; i++) {
+        console.log(func());
+    }
+}
+// callFuncNTimes(flipACoin, 5);
+// return true if parameter is falsy, false otherwise
+function isNil(param) {
+    if (param == 0)
+        return false;
+    else
+        return true;
+}
+// return true if parameter is number, false otherwise
+function isNumber(param) {
+    return typeof param === 'number';
+}
+// call property in object
+// e.g. in obj = { callableProp: function () { console.log('hello!') } }, callPropInObj(obj, 'callableProp') will log "hello!"
+function callPropInObj(object, propertyName) {
+    var prop = object[propertyName];
+    if (typeof prop === 'function') {
+        prop();
+    }
+    else {
+        console.log("Property '".concat(String(propertyName), "' is not a function."));
+    }
+}
+var obj = {
+    callableProp: function () {
+        console.log('hello!');
+    },
+    nonCallableProp: 42
+};
+// if the email is gmail
+function isGmail(email) {
+    return email.includes("gmail");
+}
+// duplicate array
+// e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
+function duplicateArray(array1, array2) {
+    if (typeof array1 == typeof array2) {
+        array1.concat(array2);
+        return true;
+    }
+    else
+        return false;
+}
+console.log(duplicateArray([1, 2, 5], [8, 6, 7]));
