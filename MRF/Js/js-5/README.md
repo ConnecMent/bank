@@ -63,15 +63,59 @@ Named exports are constructed using curly braces. Default exports are not.
   ```
 
 > **Note:**
->
 > Modules only work with the HTTP(s) protocol.
 >
 > A web-page opened via the file:// protocol cannot use import / export.
 
+## ES6 Imports vs Commonjs Require
+
+### Syntax Differences
+
+There are several difference between ES6 and CommonJS imports which we will explore with following examples:-
+
+```js
+// ES6 Import Syntax:
+import { module1, module2 } from 'module';
+import defaultModule from 'module';
+```
+
+``` js
+// CommonJS Import Syntax:
+const { module1, module2 } = require('module');
+const defaultModule = require('module');
+```
+
+### Static vs Runtime Import Resolution
+
+#### Static Import Resolution (ES6 Modules)
+
+- Imports are resolved at the time the module is parsed, before code execution.
+- The module loader analyzes import statements and resolves them to their corresponding modules.
+- Paths in import statements are evaluated statically, allowing for static analysis and optimization. Static analysis refers to the process of analyzing code without executing it, typically during the compilation or parsing phase
+- Enables efficient tree shaking and dead code elimination by bundlers.
+- Supports static analysis and better performance optimizations.
+- Supports dynamic imports where the module path can be determined at runtime. It returns a promise that resolves to
+- the module object.
+
+#### Runtime Import Resolution (CommonJS Modules)
+
+- Imports are resolved during runtime, as the code is executing. It means that the modules are loaded and executed in a blocking manner during the runtime of the program.
+- The path to the module is determined dynamically based on the value of the require statement at runtime.
+- Allows for conditional or computed imports which make require statement to be declared anywhere in the code
+- It can make static analysis and optimization more challenging for bundlers.
+
+### Interoperability with Node.js
+
+ES6 import syntax is not directly compatible with Node.js environment. We need to use a transpiler like Babel to convert the ES6 syntax to CommonJS syntax or use a tool like `esm` or `ts-node` for runtime transpilation.
+
+To use ES6 import syntax in a Node.js environment without transpiling, we can also enable the `--experimental-modules` flag (for .mjs file extension).
+
 ## Run
 
 ```bash
-bun run main.js
+bun run main.mjs
+# OR
+node --experimental-modules .\main.mjs
 ```
 
 ## Links
@@ -79,3 +123,5 @@ bun run main.js
 [JavaScript Modules W3S](https://www.w3schools.com/js/js_modules.asp)
 ⁕
 [JavaScript modules mdn](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+⁕
+[ES6 imports vs CommonJS imports](https://medium.com/@rahul.jindal57/es6-imports-vs-commonjs-imports-8e9b66aa04bd)

@@ -1,5 +1,5 @@
-import isNil from "./isnil.js";
-import { getNRandomNumbers, getNRandomNumbersRange } from "./randomUtils.js";
+import isNil from "./isNil.mjs";
+import { getNRandomNumbers, getNRandomNumbersRange } from "./randomUtils.mjs";
 
 console.log(getNRandomNumbers(12));
 console.log(getNRandomNumbersRange(3, 12, 15));
