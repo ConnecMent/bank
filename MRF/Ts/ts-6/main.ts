@@ -15,11 +15,15 @@ function flipACoin(): CoinSide {
   else return CoinSide.tail;
 }
 
-// // concat two strings
-// function concat(a: string, b: string): string {}
+// concat two strings
+function concat(a: string, b: string): string {
+  return a.concat(a);
+}
 
-// // 2^x = ?
-// function power2(number x): bigint {}
+// 2^x = ?
+function power2(x: number): bigint {
+    return BigInt(x ** 2);
+}
 
 // // user object with first name and last name, both capitalized
 // // e.g. getUser('hello', 'world') is { firstName: 'Hello', lastName: 'World' }

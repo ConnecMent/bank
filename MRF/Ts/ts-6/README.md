@@ -18,3 +18,7 @@ function getTime(a: number, b: number): number {
 [Ts Function](https://www.w3schools.com/typescript/typescript_functions.php)
 
 [Ts Enum](https://www.typescriptlang.org/docs/handbook/enums.html)
+
+[Ts String](https://www.tutorialspoint.com/typescript/typescript_strings.htm)
+
+[Ts Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html)
