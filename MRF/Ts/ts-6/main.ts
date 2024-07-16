@@ -22,23 +22,54 @@ function concat(a: string, b: string): string {
 
 // 2^x = ?
 function power2(x: number): bigint {
-    return BigInt(x ** 2);
+  return BigInt(x ** 2);
 }
 
-// // user object with first name and last name, both capitalized
-// // e.g. getUser('hello', 'world') is { firstName: 'Hello', lastName: 'World' }
-// // you should define the UserObject interface
-// function getUser(firstName: string, lastName: string): UserObject {}
+// user object with first name and last name, both capitalized
+// e.g. getUser('hello', 'world') is { firstName: 'Hello', lastName: 'World' }
+// you should define the UserObject interface
+interface UserObject {
+  firstName: string;
+  lastName: string;
+}
 
-// // greet someone!
-// // e.g. greet('ConnecMent') is "Hello, ConnecMent! Hope you the best."
-// function greet(name: string): void {}
+function getUser(firstName: string, lastName: string): UserObject {
+  let user: UserObject = {
+    firstName: firstName[0].toUpperCase() + firstName.slice(1),
+    lastName: lastName[0].toUpperCase() + lastName.slice(1),
+  };
+  return user;
+}
 
-// // get array of n random numbers
-// function getNRandomNumbers(n: number): Array<number> {}
+// greet someone!
+// e.g. greet('ConnecMent') is "Hello, ConnecMent! Hope you the best."
+function greet(name: string): void {
+  console.log(`Hello, ${name}! Hope you the best.`);
+}
 
-// // get sorted array of n random numbers, in range min to max
-// function getNRandomNumbers(n: number, min: number, max:number): Array<number> {}
+// get array of n random numbers
+function getNRandomNumbers(n: number): Array<number> {
+  const array: number[] = [];
+  for (let index = 0; index < n; index++) {
+    array.push(Math.random());
+  }
+
+  return array;
+}
+
+// get sorted array of n random numbers, in range min to max
+function getNRandomNumbersRange(
+  n: number,
+  min: number,
+  max: number
+): Array<number> {
+  const array: number[] = [];
+  for (let index = 0; index < n; index++) {
+    array.push(Math.floor(Math.random() * (max - min + 1) + min));
+  }
+
+  return array;
+}
 
 // // log current time with a x seconds interval, for n seconds
 // function logCurrentTime(x: number, n: number): void {}

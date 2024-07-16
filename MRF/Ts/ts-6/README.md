@@ -21,4 +21,8 @@ function getTime(a: number, b: number): number {
 
 [Ts String](https://www.tutorialspoint.com/typescript/typescript_strings.htm)
 
-[Ts Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html)
+[Ts Objects](https://www.typescriptlang.org/docs/handbook/2/objects.html)
+
+[Ts Interface](https://www.typescriptlang.org/docs/handbook/interfaces.html)
+
+[Ts Array](https://www.w3schools.com/typescript/typescript_arrays.php)
