@@ -96,10 +96,17 @@ function logCurrentTime(x: number, n: number) {
   }
 }
 
-// // higher order function: call the function in the parameters list
-// // e.g. callFuncNTimes(flipACoin, 3) calls flipACoin 3 times
-// function callFuncNTimes(func: () => string, n: number): void {}
-
+// higher order function: call the function in the parameters list
+// e.g. callFuncNTimes(flipACoin, 3) calls flipACoin 3 times
+function callFuncNTimes(
+  func: (...args: any[]) => any,
+  n: number,
+  ...funcParam: any[]
+) {
+  for (let i = 0; i < n; i++) {
+    func(...funcParam);
+  }
+}
 // // return true if parameter is falsy, false otherwise
 // function isNil(param?: number): boolean {}
 
