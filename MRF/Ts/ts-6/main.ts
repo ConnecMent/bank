@@ -117,13 +117,22 @@ function isNumber(param: number | string): boolean {
   return typeof param === "number";
 }
 
-// // call property in object
-// // e.g. in obj = { callableProp: function () { console.log('hello!') } }, callPropInObj(obj, 'callableProp') will log "hello!"
-// function callPropInObj<T>(object: T, propertyName: keyof typeof T): void {}
+// call property in object
+// e.g. in obj = { callableProp: function () { console.log('hello!') } }, callPropInObj(obj, 'callableProp') will log "hello!"
+function callPropInObj<T>(object: T, propertyName: keyof T): void {
+  const obj = object[propertyName];
+  if (typeof obj === "function") {
+    obj();
+  }
+}
 
-// // if the email is gmail
-// function isGmail(email: string): boolean {}
+// if the email is gmail
+function isGmail(email: string): boolean {
+  return email.endsWith("@gmail.com");
+}
 
-// // duplicate array
-// // e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
-// function duplicateArray<T>(array1: Array<T>, array2: Array<T>): boolean {}
+// duplicate array
+// e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
+function duplicateArray<T>(array1: Array<T>): Array<T> {
+  return array1.concat(array1);
+}
