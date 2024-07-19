@@ -71,8 +71,30 @@ function getNRandomNumbersRange(
   return array;
 }
 
-// // log current time with a x seconds interval, for n seconds
-// function logCurrentTime(x: number, n: number): void {}
+// log current time with a x seconds interval, for n seconds
+function logCurrentTime(x: number, n: number) {
+  let startTime = new Date().getTime() / 1000;
+
+  let ID = setInterval(printTime, x * 1000);
+
+  function printTime() {
+    let date = new Date();
+
+    if (startTime + n + 1 < date.getTime() / 1000) {
+      clearInterval(ID);
+      return;
+    }
+
+    console.log(
+      "Time:",
+      date.getHours(),
+      ":",
+      date.getMinutes(),
+      ":",
+      date.getSeconds()
+    );
+  }
+}
 
 // // higher order function: call the function in the parameters list
 // // e.g. callFuncNTimes(flipACoin, 3) calls flipACoin 3 times
