@@ -107,11 +107,15 @@ function callFuncNTimes(
     func(...funcParam);
   }
 }
-// // return true if parameter is falsy, false otherwise
-// function isNil(param?: number): boolean {}
+// return true if parameter is falsy, false otherwise
+function isNil(param?: number): boolean {
+  return param == null || isNaN(param);
+}
 
-// // return true if parameter is number, false otherwise
-// function isNumber(param: number | string): boolean {}
+// return true if parameter is number, false otherwise
+function isNumber(param: number | string): boolean {
+  return typeof param === "number";
+}
 
 // // call property in object
 // // e.g. in obj = { callableProp: function () { console.log('hello!') } }, callPropInObj(obj, 'callableProp') will log "hello!"
