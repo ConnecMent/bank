@@ -6,13 +6,13 @@ function add(a: number, b: number): number {
 // flip a coin and log the result (head or tail)
 // define enum for return type CoinSide
 enum CoinSide {
-  head,
-  tail,
+  HEAD,
+  TAIL,
 }
 
 function flipACoin(): CoinSide {
-  if (Math.random() > 0.5) return CoinSide.head;
-  else return CoinSide.tail;
+  if (Math.random() > 0.5) return CoinSide.HEAD;
+  else return CoinSide.TAIL;
 }
 
 // concat two strings
