@@ -27,4 +27,6 @@ function getTime(a: number, b: number): number {
 
 [Ts Array](https://www.w3schools.com/typescript/typescript_arrays.php)
 
+[Ts Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+
 [setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
