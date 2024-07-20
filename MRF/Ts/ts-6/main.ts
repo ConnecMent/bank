@@ -120,11 +120,11 @@ function isNumber(param: number | string): boolean {
 
 // call property in object
 // e.g. in obj = { callableProp: function () { console.log('hello!') } }, callPropInObj(obj, 'callableProp') will log "hello!"
-function callPropInObj<T>(object: T, propertyName: keyof T): void {
-  const obj = object[propertyName];
-  if (typeof obj === "function") {
-    obj();
-  }
+function callPropInObj<T extends Record<string, Function>>(
+  object: T,
+  propertyName: keyof T
+): void {
+  const obj = object[propertyName]?.();
 }
 
 // if the email is gmail
