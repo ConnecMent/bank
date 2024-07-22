@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "system",
+      "outDir": "E:/Arbitrage-Isuess/TS syntax",
+      "rootDir": "E:/Arbitrage-Isuess/TS syntax",
+      "strict": true
+    },
+    "include": ["E:/Arbitrage-Isuess/TS syntax/syntax.ts"],
+    "exclude": ["node_modules"]
+  }

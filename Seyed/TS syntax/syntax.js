@@ -27,8 +27,8 @@ function power2(x) {
 }
 function getUser(firstName, lastName) {
     var x = {
-        Fname: firstName,
-        Lname: lastName
+        fName: firstName,
+        lName: lastName
     };
     return x;
 }
@@ -69,13 +69,20 @@ function callFuncNTimes(func, n) {
         console.log(func());
     }
 }
-// callFuncNTimes(flipACoin, 5);
 // return true if parameter is falsy, false otherwise
 function isNil(param) {
-    if (param == 0)
-        return false;
-    else
+    if (param == 0
+        || param == -0
+        || param == null
+        || param == ''
+        || param == ""
+        || param == undefined
+        || param == NaN
+        || param == 0n
+        || param == false)
         return true;
+    else
+        return false;
 }
 // return true if parameter is number, false otherwise
 function isNumber(param) {
@@ -100,16 +107,16 @@ var obj = {
 };
 // if the email is gmail
 function isGmail(email) {
-    return email.includes("gmail");
-}
-// duplicate array
-// e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
-function duplicateArray(array1, array2) {
-    if (typeof array1 == typeof array2) {
-        array1.concat(array2);
+    email = email.concat(".");
+    if (email.slice(-11, -1) == "@gmail.com")
         return true;
-    }
     else
         return false;
 }
-console.log(duplicateArray([1, 2, 5], [8, 6, 7]));
+// duplicate array
+// e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
+function duplicateArray(array1) {
+    console.log(array1.concat(array1));
+    return true;
+}
+duplicateArray([1, 2, 3]);

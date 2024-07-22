@@ -32,14 +32,14 @@ function power2(x: number) : bigint {
 // e.g. getUser('hello', 'world') is { firstName: 'Hello', lastName: 'World' }
 // you should define the UserObject interface
 interface UserObject{
-    Fname : string,
-    Lname : string; 
+    fName : string,
+    lName : string; 
 }
 
 function getUser(firstName: string, lastName: string): UserObject {
     const x: UserObject = {
-        Fname : firstName,
-        Lname : lastName
+        fName : firstName,
+        lName : lastName
     }
     return x;
 }
@@ -90,17 +90,24 @@ function callFuncNTimes(func: () => string, n: number): void {
         console.log(func());
     }
 }
-// callFuncNTimes(flipACoin, 5);
 
 
 // return true if parameter is falsy, false otherwise
 function isNil(param?: number): boolean {
-    if(param == 0)
-        return false;
-    else
+    if(param == 0
+        || param == -0
+        || param == null
+        || param == ''
+        || param == ""
+        || param == undefined
+        || param == NaN
+        || param == 0n
+        || param == false
+    )
         return true;
+    else
+        return false;
 }
-
 
 // return true if parameter is number, false otherwise
 function isNumber(param: number | string): boolean {
@@ -130,17 +137,17 @@ const obj = {
 
 // if the email is gmail
 function isGmail(email: string): boolean {
-    return email.includes("gmail");
+    email = email.concat(".");
+    if(email.slice(-11,-1) == "@gmail.com")
+        return true;
+    else
+        return false;
 }
 
 
 // duplicate array
 // e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
-function duplicateArray<T>(array1: Array<T>, array2: Array<T>): boolean {
-    if(typeof array1 == typeof array2){
-        array1.concat(array2);
+function duplicateArray<T>(array1: Array<T>): boolean {
+        array1.concat(array1);
         return true;
-    }
-    else
-        return false;
 }
