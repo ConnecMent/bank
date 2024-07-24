@@ -44,8 +44,6 @@ function getUser(firstName: string, lastName: string): UserObject {
     return x;
 }
 
-console.log(getUser("seyeD","mOJtaba"));
-
 // greet someone!
 // e.g. greet('ConnecMent') is "Hello, ConnecMent! Hope you the best."
 function greet(name: string): void {
