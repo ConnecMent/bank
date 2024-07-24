@@ -38,12 +38,13 @@ interface UserObject{
 
 function getUser(firstName: string, lastName: string): UserObject {
     const x: UserObject = {
-        fName : firstName,
-        lName : lastName
+        fName : firstName[0].toUpperCase() + firstName.slice(1).toLowerCase(),
+        lName : lastName[0].toUpperCase() + lastName.slice(1).toLowerCase();
     }
     return x;
 }
 
+console.log(getUser("seyeD","mOJtaba"));
 
 // greet someone!
 // e.g. greet('ConnecMent') is "Hello, ConnecMent! Hope you the best."

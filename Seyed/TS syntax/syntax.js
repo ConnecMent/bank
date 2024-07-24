@@ -27,11 +27,12 @@ function power2(x) {
 }
 function getUser(firstName, lastName) {
     var x = {
-        fName: firstName,
-        lName: lastName
+        fName: firstName[0].toUpperCase() + firstName.slice(1).toLowerCase(),
+        lName: lastName[0].toUpperCase() + lastName.slice(1).toLowerCase()
     };
     return x;
 }
+console.log(getUser("seyeD", "mOJtaba"));
 // greet someone!
 // e.g. greet('ConnecMent') is "Hello, ConnecMent! Hope you the best."
 function greet(name) {
@@ -116,7 +117,6 @@ function isGmail(email) {
 // duplicate array
 // e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
 function duplicateArray(array1) {
-    console.log(array1.concat(array1));
+    array1.concat(array1);
     return true;
 }
-duplicateArray([1, 2, 3]);
