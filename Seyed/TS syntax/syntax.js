@@ -1,3 +1,4 @@
+"use strict";
 // add number a to b
 function add(a, b) {
     return a + b;
@@ -26,13 +27,12 @@ function power2(x) {
     return BigInt(Math.pow(2, x));
 }
 function getUser(firstName, lastName) {
-    var x = {
+    const x = {
         fName: firstName[0].toUpperCase() + firstName.slice(1).toLowerCase(),
         lName: lastName[0].toUpperCase() + lastName.slice(1).toLowerCase()
     };
     return x;
 }
-console.log(getUser("seyeD", "mOJtaba"));
 // greet someone!
 // e.g. greet('ConnecMent') is "Hello, ConnecMent! Hope you the best."
 function greet(name) {
@@ -40,33 +40,33 @@ function greet(name) {
 }
 // get array of n random numbers
 function getNRandomNumbers1(n) {
-    var save = [];
-    for (var i = 0; i < n; i++) {
+    let save = [];
+    for (let i = 0; i < n; i++) {
         save.push(Math.random());
     }
     return save;
 }
 // get sorted array of n random numbers, in range min to max
 function getNRandomNumbers2(n, min, max) {
-    var save = [];
-    for (var i = 0; i < n; i++) {
+    let save = [];
+    for (let i = 0; i < n; i++) {
         save.push(Math.random() * (max - min) + min);
     }
-    return save.sort(function (a, b) { return a - b; });
+    return save.sort((a, b) => a - b);
 }
 // log current time with a x seconds interval, for n seconds
 function logCurrentTime(x, n) {
-    var intervalId = setInterval(function () {
+    const intervalId = setInterval(() => {
         console.log(new Date().toLocaleTimeString());
     }, x * 1000);
-    setTimeout(function () {
+    setTimeout(() => {
         clearInterval(intervalId);
     }, n * 1000);
 }
 // higher order function: call the function in the parameters list
 // e.g. callFuncNTimes(flipACoin, 3) calls flipACoin 3 times
 function callFuncNTimes(func, n) {
-    for (var i = 0; i < n; i++) {
+    for (let i = 0; i < n; i++) {
         console.log(func());
     }
 }
@@ -92,15 +92,15 @@ function isNumber(param) {
 // call property in object
 // e.g. in obj = { callableProp: function () { console.log('hello!') } }, callPropInObj(obj, 'callableProp') will log "hello!"
 function callPropInObj(object, propertyName) {
-    var prop = object[propertyName];
+    const prop = object[propertyName];
     if (typeof prop === 'function') {
         prop();
     }
     else {
-        console.log("Property '".concat(String(propertyName), "' is not a function."));
+        console.log(`Property '${String(propertyName)}' is not a function.`);
     }
 }
-var obj = {
+const obj = {
     callableProp: function () {
         console.log('hello!');
     },

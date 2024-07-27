@@ -1,8 +1,15 @@
 {
-  "dependencies": {
-    "luxon": "^3.4.4"
+  "name": "ts-syntax",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
   },
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "devDependencies": {
-    "@types/luxon": "^3.4.2"
+    "@types/node": "^20.14.12",
+    "typescript": "^5.5.4"
   }
 }
