@@ -146,7 +146,6 @@ function isGmail(email: string): boolean {
 
 // duplicate array
 // e.g. duplicateArray([1,2,3]) is [1,2,3,1,2,3]
-function duplicateArray<T>(array1: Array<T>): boolean {
-        array1.concat(array1);
-        return true;
+function duplicateArray<T>(array1: Array<T>): Array<T> {
+        return array1.concat(array1);
 }
