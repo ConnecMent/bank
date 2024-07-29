@@ -1,10 +1,10 @@
 {
-  "name": "ts-basics",
+  "name": "ts-api",
   "version": "1.0.0",
-  "description": "A basic TypeScript project with various utility functions.",
-  "main": "basics.ts",
+  "description": "A sample of api using typescript and axios.",
+  "main": "api.ts",
   "scripts": {
-    "start": "ts-node basics.ts",
+    "start": "ts-node api.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

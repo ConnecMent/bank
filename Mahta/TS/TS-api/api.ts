@@ -12,33 +12,38 @@ interface User {
     name: string;
 }
 
-async function getTenPosts(): Promise<void> {
-    try {
-        const postsResponse = await axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts?_limit=10');
-        const posts = postsResponse.data;
+function getTenPosts(): void {
+    axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts?_limit=10')
+        .then(postsResponse => {
+            const posts = postsResponse.data;
 
-        const userPromises = posts.map(post => axios.get<User>(`https://jsonplaceholder.typicode.com/users/${post.userId}`));
-        const usersResponses = await Promise.all(userPromises);
-        const users = usersResponses.map(response => response.data);
+            const userPromises = posts.map(post => 
+                axios.get<User>(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
+            );
 
-        posts.forEach(post => {
-            const user = users.find(user => user.id === post.userId);
-            if (user) {
-                console.log(`Title: ${post.title}`);
-                console.log(`Body: ${post.body}`);
-                console.log(`Author: ${user.name}`);
-                console.log('---');
-            } else {
-                console.log(`Title: ${post.title}`);
-                console.log(`Body: ${post.body}`);
-                console.log('Author: Unknown');
-                console.log('---');
-            }
+            return Promise.all(userPromises)
+                .then(usersResponses => {
+                    const users = usersResponses.map(response => response.data);
+
+                    posts.forEach(post => {
+                        const user = users.find(user => user.id === post.userId);
+                        if (user) {
+                            console.log(`Title: ${post.title}`);
+                            console.log(`Body: ${post.body}`);
+                            console.log(`Author: ${user.name}`);
+                            console.log('---');
+                        } else {
+                            console.log(`Title: ${post.title}`);
+                            console.log(`Body: ${post.body}`);
+                            console.log('Author: Unknown');
+                            console.log('---');
+                        }
+                    });
+                });
+        })
+        .catch(error => {
+            console.error('Error fetching posts or users:', error);
         });
-    } catch (error) {
-        console.error('Error fetching posts or users:', error);
-    }
 }
-
 
 getTenPosts();
