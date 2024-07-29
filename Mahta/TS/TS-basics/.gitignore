@@ -1,49 +1,9 @@
-# Node modules
-node_modules/
 
-# Compiled JavaScript files
-*.js
-*.js.map
-
-# Compiled TypeScript files
-*.tsbuildinfo
-
-# TypeScript output directory (if you use "outDir" in tsconfig)
-dist/
-
-# Logs
-*.log
-
-# Environment variables
+node_modules
+build
+npm-debug.log
 .env
-
-# MacOS
 .DS_Store
-
-# Windows
 Thumbs.db
-
-# IDE/Editor specific files
-.vscode/
-.idea/
-
-# Package lock and yarn lock files
-package-lock.json
-yarn.lock
-
-# NPM package cache
-.npm/
-
-# Temporary files
-*.tmp
-*.swp
-*.swo
-*.swn
-
-# Coverage directory used by testing tools
-coverage/
-
-
-# Ignore ts-node related output or temporary files
-# Uncomment if ts-node creates any specific cache files or folders
-# *.ts-node.*
+*.tsbuildinfo
+dist/
