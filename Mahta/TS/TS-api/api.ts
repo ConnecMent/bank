@@ -1,5 +1,6 @@
 import { createInterface } from "readline";
 import axios from "axios";
+
 interface Post {
   userId: number;
   id: number;
@@ -45,7 +46,6 @@ async function getTenPosts(): Promise<void> {
   }
 }
 
-
 const rl = createInterface({
   input: process.stdin,
   output: process.stdout
@@ -53,35 +53,14 @@ const rl = createInterface({
 
 function askQuestion(question: string): Promise<string> {
   return new Promise((resolve) => {
-      rl.question(question, (answer) => {
-          resolve(answer);
-      });
+    rl.question(question, (answer) => {
+      resolve(answer);
+    });
   });
 }
 
-async function createPost(): Promise<void> {
+async function createPost(userId: number, title: string, body: string): Promise<void> {
   try {
-    const userIdInput = await askQuestion("Enter user's id: ");
-    const userId = parseInt(userIdInput.trim(), 10);
-    if (isNaN(userId)) {
-      console.error("Invalid user id. Please enter a numeric value.");
-      return;
-    }
-
-    const titleInput = await askQuestion("Enter post's title: ");
-    const title = titleInput.trim();
-    if (!title) {
-      console.error("Title is required.");
-      return;
-    }
-
-    let body = "";
-    let line: string;
-    console.log("Enter post's body (type 'END' on a new line to finish):");
-    while ((line = await askQuestion("")) !== "END") {
-      body += `${line}\n`;
-    }
-
     const postId = Math.floor(Math.random() * 1000);
     const newPost: Post = {
       userId,
@@ -97,15 +76,8 @@ async function createPost(): Promise<void> {
   }
 }
 
-async function performSearch(): Promise<void> {
+async function performSearch(title: string): Promise<void> {
   try {
-    const searchInput = await askQuestion("Enter post's title: ");
-    const title = searchInput.trim();
-    if (!title) {
-      console.error("Title is required.");
-      return;
-    }
-
     const postsResponse = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?title=${encodeURIComponent(title)}`);
     const posts = postsResponse.data;
 
@@ -137,22 +109,8 @@ async function performSearch(): Promise<void> {
   }
 }
 
-async function updatePostBody(): Promise<void> {
+async function updatePostBody(postId: number, body: string): Promise<void> {
   try {
-    const postIdInput = await askQuestion("Enter post ID to update: ");
-    const postId = parseInt(postIdInput.trim(), 10);
-    if (isNaN(postId)) {
-      console.error("Invalid post ID. Please enter a numeric value.");
-      return;
-    }
-
-    const bodyInput = await askQuestion("Enter new body for the post: ");
-    const body = bodyInput.trim();
-    if (!body) {
-      console.error("Body is required.");
-      return;
-    }
-
     const response = await axios.patch<Post>(`https://jsonplaceholder.typicode.com/posts/${postId}`, { body });
     console.log("Post Updated:", response.data);
   } catch (error) {
@@ -160,18 +118,12 @@ async function updatePostBody(): Promise<void> {
   }
 }
 
-async function deletePost(): Promise<void> {
+async function deletePost(postId: number): Promise<void> {
   try {
-    const postIdInput = await askQuestion("Enter post ID to delete: ");
-    const postId = parseInt(postIdInput.trim(), 10);
-    if (isNaN(postId)) {
-      console.error("Invalid post ID. Please enter a numeric value.");
-      return;
-    }
-    const response = await axios.delete<Post>(`https://jsonplaceholder.typicode.com/posts/${postId}`);
-    console.log("Post deleted:", response.data);
+    await axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+    console.log("Post deleted successfully.");
   } catch (error) {
-    console.error("Error updating post:", error);
+    console.error("Error deleting post:", error);
   }
 }
 
@@ -183,16 +135,58 @@ async function mainMenu(): Promise<void> {
         await getTenPosts();
         break;
       case "2":
-        await createPost();
+        const userIdInput = await askQuestion("Enter user's id: ");
+        const userId = parseInt(userIdInput.trim(), 10);
+        if (isNaN(userId)) {
+          console.error("Invalid user id. Please enter a numeric value.");
+          break;
+        }
+        const titleInput = await askQuestion("Enter post's title: ");
+        const title = titleInput.trim();
+        if (!title) {
+          console.error("Title is required.");
+          break;
+        }
+        let body = "";
+        let line: string;
+        console.log("Enter post's body (type 'END' on a new line to finish):");
+        while ((line = await askQuestion("")) !== "END") {
+          body += `${line}\n`;
+        }
+        await createPost(userId, title, body);
         break;
       case "3":
-        await performSearch();
+        const searchInput = await askQuestion("Enter post's title: ");
+        const searchTitle = searchInput.trim();
+        if (!searchTitle) {
+          console.error("Title is required.");
+          break;
+        }
+        await performSearch(searchTitle);
         break;
       case "4":
-        await updatePostBody();
+        const postIdUpdateInput = await askQuestion("Enter post ID to update: ");
+        const postIdUpdate = parseInt(postIdUpdateInput.trim(), 10);
+        if (isNaN(postIdUpdate)) {
+          console.error("Invalid post ID. Please enter a numeric value.");
+          break;
+        }
+        const bodyUpdateInput = await askQuestion("Enter new body for the post: ");
+        const bodyUpdate = bodyUpdateInput.trim();
+        if (!bodyUpdate) {
+          console.error("Body is required.");
+          break;
+        }
+        await updatePostBody(postIdUpdate, bodyUpdate);
         break;
       case "5":
-        await deletePost();
+        const postIdDeleteInput = await askQuestion("Enter post ID to delete: ");
+        const postIdDelete = parseInt(postIdDeleteInput.trim(), 10);
+        if (isNaN(postIdDelete)) {
+          console.error("Invalid post ID. Please enter a numeric value.");
+          break;
+        }
+        await deletePost(postIdDelete);
         break;
       case "6":
         rl.close();
