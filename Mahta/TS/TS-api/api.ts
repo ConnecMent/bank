@@ -9,43 +9,40 @@ interface Post {
 
 interface User {
   id: number;
-  title: string;
+  name: string;
 }
 
-function getTenPosts(): void {
-  axios
-    .get<Post[]>("https://jsonplaceholder.typicode.com/posts?_limit=10")
-    .then((postsResponse) => {
-      const posts = postsResponse.data;
+async function getTenPosts(): Promise<void> {
+  try {
+    const postsResponse = await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts?_limit=10");
+    const posts = postsResponse.data;
 
-      const userPromises = posts.map((post) =>
-        axios.get<User>(
-          `https://jsonplaceholder.typicode.com/users/${post.userId}`
-        )
-      );
+    const userPromises = posts.map((post) =>
+      axios.get<User>(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
+    );
 
-      return Promise.all(userPromises).then((usersResponses) => {
-        const users = usersResponses.map((response) => response.data);
+    const usersResponses = await Promise.all(userPromises);
+    const users = usersResponses.map((response) => response.data);
 
-        posts.forEach((post) => {
-          const user = users.find((user) => user.id === post.userId);
-          if (user) {
-            console.log(`Title: ${post.title}`);
-            console.log(`Body: ${post.body}`);
-            console.log(`Author: ${user.title}`);
-            console.log("---");
-          } else {
-            console.log(`Title: ${post.title}`);
-            console.log(`Body: ${post.body}`);
-            console.log("Author: Unknown");
-            console.log("---");
-          }
-        });
-      });
-    })
-    .catch((error) => {
-      console.error("Error fetching posts or users:", error);
+    posts.forEach((post) => {
+      const user = users.find((user) => user.id === post.userId);
+      if (user) {
+        console.log(`Title: ${post.title}`);
+        console.log(`Body: ${post.body}`);
+        console.log(`ID: ${post.id}`);
+        console.log(`Author: ${user.name}`);
+        console.log("---");
+      } else {
+        console.log(`Title: ${post.title}`);
+        console.log(`Body: ${post.body}`);
+        console.log(`ID: ${post.id}`);
+        console.log("Author: Unknown");
+        console.log("---");
+      }
     });
+  } catch (error) {
+    console.error("Error fetching posts or users:", error);
+  }
 }
 
 
@@ -124,11 +121,13 @@ async function performSearch(): Promise<void> {
       if (user) {
         console.log(`Title: ${post.title}`);
         console.log(`Body: ${post.body}`);
-        console.log(`Author: ${user.title}`);
+        console.log(`ID: ${post.id}`);
+        console.log(`Author: ${user.name}`);
         console.log("---");
       } else {
         console.log(`Title: ${post.title}`);
         console.log(`Body: ${post.body}`);
+        console.log(`ID: ${post.id}`);
         console.log("Author: Unknown");
         console.log("---");
       }
@@ -139,16 +138,46 @@ async function performSearch(): Promise<void> {
 }
 
 async function updatePostBody(): Promise<void> {
+  try {
+    const postIdInput = await askQuestion("Enter post ID to update: ");
+    const postId = parseInt(postIdInput.trim(), 10);
+    if (isNaN(postId)) {
+      console.error("Invalid post ID. Please enter a numeric value.");
+      return;
+    }
 
+    const bodyInput = await askQuestion("Enter new body for the post: ");
+    const body = bodyInput.trim();
+    if (!body) {
+      console.error("Body is required.");
+      return;
+    }
+
+    const response = await axios.patch<Post>(`https://jsonplaceholder.typicode.com/posts/${postId}`, { body });
+    console.log("Post Updated:", response.data);
+  } catch (error) {
+    console.error("Error updating post:", error);
+  }
 }
 
 async function deletePost(): Promise<void> {
-
+  try {
+    const postIdInput = await askQuestion("Enter post ID to delete: ");
+    const postId = parseInt(postIdInput.trim(), 10);
+    if (isNaN(postId)) {
+      console.error("Invalid post ID. Please enter a numeric value.");
+      return;
+    }
+    const response = await axios.delete<Post>(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+    console.log("Post deleted:", response.data);
+  } catch (error) {
+    console.error("Error updating post:", error);
+  }
 }
 
 async function mainMenu(): Promise<void> {
   while (true) {
-    const choice = await askQuestion("Choose an option: (1) Get Ten Posts, (2) Create Post, (3) Search Posts, (4) Exit: ");
+    const choice = await askQuestion("Choose an option: (1) Get Ten Posts, (2) Create Post, (3) Search Posts, (4) Update Post Body, (5) Delete Post, (6) Exit: ");
     switch (choice.trim()) {
       case "1":
         await getTenPosts();
