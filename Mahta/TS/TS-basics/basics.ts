@@ -73,10 +73,10 @@ function callPropInObj<T>(object: T, propertyName: keyof T): void {
   (object[propertyName] as unknown as () => void)?.();
 }
 
-
 function isGmail(email: string): boolean {
-  return email.endsWith("@isGmail.com");
+  return email.toLowerCase().endsWith("@gmail.com");
 }
+
 
 function duplicateArray<T>(array: T[]): T[] {
   return array.concat(array);
@@ -101,6 +101,9 @@ console.log("Is nil (undefined):", isNil(undefined));
 console.log("Is nil (false):", isNil(false));
 const obj = { myFunc: () => console.log("Called myFunc!") };
 callPropInObj(obj, "myFunc");
-console.log('Is "test@isEmail.com" a Gmail:', isGmail("test@isEmail.com"));
-console.log('Is "test@isGmail.com" a Gmail:', isGmail("test@isGmail.com"));
-console.log("Duplicated array of fruits:", duplicateArray((["Apple", "Orange", "Strawberry"])));
+console.log('Is "test@isEmail.com" a Gmail:', isGmail("test@Email.com"));
+console.log('Is "test@isGmail.com" a Gmail:', isGmail("test@Gmail.com"));
+console.log(
+  "Duplicated array of fruits:",
+  duplicateArray(["Apple", "Orange", "Strawberry"])
+);
