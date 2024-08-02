@@ -15,11 +15,15 @@ interface User {
 
 async function getTenPosts(): Promise<void> {
   try {
-    const postsResponse = await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts?_limit=10");
+    const postsResponse = await axios.get<Post[]>(
+      "https://jsonplaceholder.typicode.com/posts?_limit=10"
+    );
     const posts = postsResponse.data;
 
     const userPromises = posts.map((post) =>
-      axios.get<User>(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
+      axios.get<User>(
+        `https://jsonplaceholder.typicode.com/users/${post.userId}`
+      )
     );
 
     const usersResponses = await Promise.all(userPromises);
@@ -48,7 +52,7 @@ async function getTenPosts(): Promise<void> {
 
 const rl = createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 function askQuestion(question: string): Promise<string> {
@@ -59,7 +63,11 @@ function askQuestion(question: string): Promise<string> {
   });
 }
 
-async function createPost(userId: number, title: string, body: string): Promise<void> {
+async function createPost(
+  userId: number,
+  title: string,
+  body: string
+): Promise<void> {
   try {
     const postId = Math.floor(Math.random() * 1000);
     const newPost: Post = {
@@ -69,7 +77,10 @@ async function createPost(userId: number, title: string, body: string): Promise<
       body: body.trim(),
     };
 
-    const response = await axios.post<Post>("https://jsonplaceholder.typicode.com/posts", newPost);
+    const response = await axios.post<Post>(
+      "https://jsonplaceholder.typicode.com/posts",
+      newPost
+    );
     console.log("New Post Created:", response.data);
   } catch (error) {
     console.error("Error creating post:", error);
@@ -78,11 +89,17 @@ async function createPost(userId: number, title: string, body: string): Promise<
 
 async function performSearch(title: string): Promise<void> {
   try {
-    const postsResponse = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?title=${encodeURIComponent(title)}`);
+    const postsResponse = await axios.get<Post[]>(
+      `https://jsonplaceholder.typicode.com/posts?title=${encodeURIComponent(
+        title
+      )}`
+    );
     const posts = postsResponse.data;
 
     const userPromises = posts.map((post) =>
-      axios.get<User>(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
+      axios.get<User>(
+        `https://jsonplaceholder.typicode.com/users/${post.userId}`
+      )
     );
 
     const usersResponses = await Promise.all(userPromises);
@@ -111,7 +128,10 @@ async function performSearch(title: string): Promise<void> {
 
 async function updatePostBody(postId: number, body: string): Promise<void> {
   try {
-    const response = await axios.patch<Post>(`https://jsonplaceholder.typicode.com/posts/${postId}`, { body });
+    const response = await axios.patch<Post>(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`,
+      { body }
+    );
     console.log("Post Updated:", response.data);
   } catch (error) {
     console.error("Error updating post:", error);
@@ -129,7 +149,9 @@ async function deletePost(postId: number): Promise<void> {
 
 async function mainMenu(): Promise<void> {
   while (true) {
-    const choice = await askQuestion("Choose an option: (1) Get Ten Posts, (2) Create Post, (3) Search Posts, (4) Update Post Body, (5) Delete Post, (6) Exit: ");
+    const choice = await askQuestion(
+      "Choose an option: (1) Get Ten Posts, (2) Create Post, (3) Search Posts, (4) Update Post Body, (5) Delete Post, (6) Exit: "
+    );
     switch (choice.trim()) {
       case "1":
         await getTenPosts();
@@ -165,13 +187,17 @@ async function mainMenu(): Promise<void> {
         await performSearch(searchTitle);
         break;
       case "4":
-        const postIdUpdateInput = await askQuestion("Enter post ID to update: ");
+        const postIdUpdateInput = await askQuestion(
+          "Enter post ID to update: "
+        );
         const postIdUpdate = parseInt(postIdUpdateInput.trim(), 10);
         if (isNaN(postIdUpdate)) {
           console.error("Invalid post ID. Please enter a numeric value.");
           break;
         }
-        const bodyUpdateInput = await askQuestion("Enter new body for the post: ");
+        const bodyUpdateInput = await askQuestion(
+          "Enter new body for the post: "
+        );
         const bodyUpdate = bodyUpdateInput.trim();
         if (!bodyUpdate) {
           console.error("Body is required.");
@@ -180,7 +206,9 @@ async function mainMenu(): Promise<void> {
         await updatePostBody(postIdUpdate, bodyUpdate);
         break;
       case "5":
-        const postIdDeleteInput = await askQuestion("Enter post ID to delete: ");
+        const postIdDeleteInput = await askQuestion(
+          "Enter post ID to delete: "
+        );
         const postIdDelete = parseInt(postIdDeleteInput.trim(), 10);
         if (isNaN(postIdDelete)) {
           console.error("Invalid post ID. Please enter a numeric value.");
