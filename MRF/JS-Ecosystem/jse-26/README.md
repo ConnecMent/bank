@@ -1,4 +1,8 @@
-# init Projects
+# Prettier
+
+issue: [#26](https://github.com/ConnecMent/bank/issues/26)
+
+## init Projects
 
 ```bash
 npm init
