@@ -33,6 +33,10 @@ To install lint-staged in the recommended way, you need to:
 
 3. Install some linters, like [ESLint](https://eslint.org/) or [Prettier](https://prettier.io/)
 
+    ```bash
+    npm install --save-dev prettier
+    ```
+
 4. Configure *lint-staged* to run linters and other tasks:
 
     - for example: `{ "*.js": "eslint" }` to run ESLint for all staged JS files
