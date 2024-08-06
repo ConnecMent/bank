@@ -1,4 +1,4 @@
-# Getting started
+# Env vars
 
 issue: [#10](https://github.com/ConnecMent/bank/issues/10)
 
