@@ -50,3 +50,31 @@ node --env-file=.env --env-file=.development.env app.js
 
 > [!NOTE]
 > if the same variable is defined in the environment and in the file, the value from the environment takes precedence.
+
+## Use `dotenv`
+
+`Dotenv` is a zero-dependency module that loads environment variables from a `.env` file into `process.env.` Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
+
+instal the dotenv package:
+
+```bash
+npm i -D dotenv
+```
+
+use:
+
+```js
+require('dotenv').config()
+
+// load the env var
+const my_name = process.env.MY_NAME
+console.log("Hello", my_name);
+```
+
+to import `.env.local` file:
+
+```js
+require('dotenv').config({ path: '.env.local', ".env" })
+```
+
+[npm dotenv package](https://www.npmjs.com/package/dotenv)

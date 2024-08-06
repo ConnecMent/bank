@@ -7,7 +7,12 @@
     "dev": "MANUAL=Ali node --env-file=.env --env-file=.env.local index.js",
     "win-set-env": "$env:MANUAL = \"Ali\";",
     "win-dev": "node --env-file=.env --env-file=.env.local index.js",
+    "dotenv": "MANUAL=Ali node index-dotenv.js",
+    "dotenv-win": "node index-dotenv.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.4.5"
+  }
 }
