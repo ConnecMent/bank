@@ -1,0 +1,35 @@
+{
+  "name": "ts-typeorm",
+  "version": "1.0.0",
+  "description": "An issue for learning using typeorm",
+  "main": "dataSource.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ConnecMent/bank.git"
+  },
+  "keywords": [
+    "typeorm",
+    "dataSource",
+    "database entity",
+    "database initialization and migration",
+    "save query"
+  ],
+  "author": "https://github.com/MahtaMirzaei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ConnecMent/bank/issues"
+  },
+  "homepage": "https://github.com/ConnecMent/bank#readme",
+  "devDependencies": {
+    "@types/sqlite3": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.20"
+  }
+}
