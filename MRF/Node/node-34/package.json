@@ -4,7 +4,9 @@
   "description": "issue: [#34](https://github.com/ConnecMent/bank/issues/34)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "MANUAL=Ali node --env-file=.env --env-file=.env.local index.js",
+    "win-set-env": "$env:MANUAL = \"Ali\";",
+    "win-dev": "node --env-file=.env --env-file=.env.local index.js",
   },
   "author": "",
   "license": "ISC"
