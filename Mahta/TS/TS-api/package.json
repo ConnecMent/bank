@@ -1,0 +1,19 @@
+{
+  "name": "ts-api",
+  "version": "1.0.0",
+  "description": "A sample of api using typescript and axios.",
+  "main": "api.ts",
+  "scripts": {
+    "start": "ts-node api.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "axios": "^0.21.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
