@@ -1,0 +1,17 @@
+{
+  "name": "ts-33",
+  "version": "1.0.0",
+  "description": "issue: [#33](https://github.com/ConnecMent/bank/issues/33)",
+  "main": "index.js",
+  "scripts": {
+    "ts-node": "ts-node main.ts",
+    "tsx": "tsx main.ts",
+    "node": "node --import=tsx main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsx": "^4.16.5"
+  }
+}
