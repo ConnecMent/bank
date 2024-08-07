@@ -1,14 +1,29 @@
 import axios from "axios"
 
+interface Post{
+    id: number,
+    userId: number,
+    title: string,
+    body: string
+}
+
 async function display10Posts() {
     try{
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        const posts = response.data.slice(0,10)
-        console.log(posts)
+        const response = await axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts?_limit=10')
+        const posts = response.data
+        
+        posts.forEach(post => {
+            console.log(`id: ${post.id}`);
+            console.log(`userId: ${post.userId}`);
+            console.log(`title: ${post.title}`);
+            console.log(`body: ${post.body}`);
+            console.log("-------------------------------")
+        })
     }catch (error){
         console.error(error)
     }
 }
+
 
 async function deletePost(id : number) {
     try{
@@ -59,20 +74,11 @@ interface Query{
 
 async function searchForPosts(input: Query) {
     try{
-        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts`)
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/?id=${input.id}&?userId=${input.userId}&?body=${input.body}&?title=${input.title}`)
         const posts = response.data;
 
-        const filteredPosts = posts.filter((post: any) => {
-            return (
-                (input.id === undefined || post.id === input.id) &&
-                (input.userId === undefined || post.userId === input.userId) &&
-                (input.title === undefined || post.title.includes(input.title)) &&
-                (input.body === undefined || post.body.includes(input.body))
-            );
-        });
-
-        console.log(filteredPosts);
+        console.log(posts);
     }catch (error){
-        console.error(error)
+        console.error(error);
     }
 }
