@@ -4,8 +4,8 @@
   "description": "An issue for learning using typeorm",
   "main": "dataSource.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm"
+  },  
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/ConnecMent/bank.git"
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ConnecMent/bank#readme",
   "devDependencies": {
     "@types/sqlite3": "^3.1.11",
+    "@types/uuid": "^10.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },

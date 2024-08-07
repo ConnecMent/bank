@@ -4,13 +4,14 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "skipLibCheck": true,      
-    "outDir": "./dist",                           
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
     "moduleResolution": "node",
     "typeRoots": ["./node_modules/@types"],
     "types": ["node", "sqlite3"]
-  },
-  "include": ["dataSource.ts"]
+    },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
