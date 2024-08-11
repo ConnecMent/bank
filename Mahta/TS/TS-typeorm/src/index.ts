@@ -1,24 +1,24 @@
 import { DataSource } from "typeorm";
 import "reflect-metadata";
-import { User } from "./entity/dataSource"; 
+import { user } from "./entity/dataSource"; 
 
 const AppDataSource = new DataSource({
   type: "sqlite",
   database: "database.db",
   synchronize: true,
   logging: false,
-  entities: [User],
+  entities: [user],
   subscribers: [],
-  migrations: [],
+  migrations: ["src/migration/*.ts"]
 });
 
 AppDataSource.initialize()
   .then(async () => {
     console.log("Database initialized.");
 
-    const userRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(user);
 
-    const johnDoe = new User();
+    const johnDoe = new user();
     johnDoe.fName = "John";
     johnDoe.lName = "Doe";
     johnDoe.age = 21;

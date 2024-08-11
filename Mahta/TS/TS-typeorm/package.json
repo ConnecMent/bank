@@ -5,7 +5,7 @@
   "main": "dataSource.ts",
   "scripts": {
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/ConnecMent/bank.git"
@@ -27,6 +27,7 @@
     "@types/sqlite3": "^3.1.11",
     "@types/uuid": "^10.0.0",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {
