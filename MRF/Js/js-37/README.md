@@ -66,3 +66,5 @@ const createUser = ({ firstName, lastName, email }) => ({
 [GFG factory functions](https://www.geeksforgeeks.org/what-are-factory-functions-in-javascript/)
 ⁕
 [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+⁕
+[Factory Pattern](https://www.patterns.dev/vanilla/factory-pattern)
