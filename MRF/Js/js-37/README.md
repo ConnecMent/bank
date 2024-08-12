@@ -40,6 +40,29 @@ robo2.talk();
 // output => My name is Chitti 2.O Upgraded, the robot. 
 ```
 
+## Closure
+
+ A closure is the combination of a function and the lexical environment within which that function was declared. This environment consists of any local variables that were in-scope at the time the closure was created.
+
+## Factory Pattern
+
+With the factory pattern we can use factory functions in order to create new objects. A function is a factory function when it returns a new object without the use of the new keyword!
+
+Say that we need many users for our application. We can create new users with a `firstName`, `lastName`, and `email` property. The factory function adds a `fullName` property to the newly created object as well, which returns the `firstName` and the `lastName`.
+
+```js
+const createUser = ({ firstName, lastName, email }) => ({
+  firstName,
+  lastName,
+  email,
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+});
+```
+
 ## Links
 
 [GFG factory functions](https://www.geeksforgeeks.org/what-are-factory-functions-in-javascript/)
+⁕
+[MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
