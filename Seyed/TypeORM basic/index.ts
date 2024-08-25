@@ -1,16 +1,20 @@
+import { Repository } from "typeorm";
 import { dataSource } from "./dataSource";
 import { User } from "./entity";
 
-dataSource.initialize().then(() => {
-    const user = new User()
-        user.fName = 'Seyed Mojtaba'
-        user.lName = 'Mirsoleimani'
-        user.age = 21
-    
+dataSource.initialize().then(async() => {
+    const user = dataSource.getRepository(User)
 
-    dataSource.manager.save(user)
+    const seyed = new User()
+        seyed.fName = 'Seyed Mojtaba'
+        seyed.lName = 'Mirsoleimani'
+        seyed.age = 21
+    
+    await user.save(seyed)
     console.log("User has been saved");
 
-    dataSource.runMigrations()
-    console.log("Migrations have been run");
+    const users = await user.find()
+    console.log(users)
 }).catch(error => console.log(error));
+
+export default dataSource
