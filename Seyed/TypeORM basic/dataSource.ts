@@ -5,7 +5,7 @@ import { User } from './entity'
 export const dataSource = new DataSource({
     type: 'sqlite',
     database: 'database.sqlite',
-    synchronize: true,
+    synchronize: false,
     logging: false,
     entities: [User],
     migrations: ["./migration/*.ts"],
