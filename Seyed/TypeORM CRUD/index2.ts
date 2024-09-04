@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { dataSource } from "./dataSource";
+import { dataSource } from "./dataSource2";
 import { User } from "./entity2";
 
 async function main(){
@@ -13,7 +13,7 @@ main()
 
 async function createNewUser(newUser: User, repo: Repository<User>){
     try{
-        var check = await repo.exists({
+        const check = await repo.exists({
             where:{
                 fName: newUser.fName,
                 lName: newUser.lName
@@ -21,8 +21,8 @@ async function createNewUser(newUser: User, repo: Repository<User>){
         })
 
         if(!check){
-        await repo.save(newUser);
-        console.log("New user saved successfuly!")
+        await repo.insert(newUser);
+        console.log("New user inserted successfuly!")
         }else{
             console.log("User already exists!")
         }
@@ -74,28 +74,8 @@ async function deleteUser(userId: number, repo: Repository<User>){
         })
         
         if(check){
-            const user = await repo.findOne({
-                where:{
-                    id: userId
-                }
-            })
-
             await repo.delete(userId)
-            
-            const check2 = await repo.exists({
-                where:{
-                    id: user?.id,
-                    fName: user?.fName,
-                    lName: user?.lName,
-                    age: user?.age
-                }
-            })
-
-            if(!check2){
                 console.log("User deleted!")
-            }else{
-                console.log("The user was not deleted!")
-            }
         }else{
             console.log("The desired user does not exist!")
         }
@@ -104,5 +84,3 @@ async function deleteUser(userId: number, repo: Repository<User>){
         console.error(error)
     }
 }
-
-export default dataSource
