@@ -8,6 +8,6 @@ export const dataSource = new DataSource({
     synchronize: false,
     logging: false,
     entities: [User],
-    migrations: ["./migration/*.ts"],
+    migrations: ["./migration/*.ts"]
 })
 
