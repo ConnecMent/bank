@@ -1,12 +1,13 @@
 import typeorm from 'typeorm'
 import { DataSource } from 'typeorm'
-import { User } from './entity2'
+import { User } from './UserEntity'
+import { Post } from './PostEntity'
 
 export const dataSource = new DataSource({
     type: 'sqlite',
-    database: 'database_sqlite',
+    database: 'database.splite',
     synchronize: false,
     logging: false,
-    entities: [User],
+    entities: [User, Post],
     migrations: ["./migration/*.ts"],
 })
