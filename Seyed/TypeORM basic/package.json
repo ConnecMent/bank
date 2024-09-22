@@ -4,6 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node index.ts",
+    "typeorm": "NODE_OPTIONS=--experimental-specifier-resolution=node typeorm-ts-node-esm",
+    "set": "set",
+    "type-ts": "npx typeorm-ts-node-commonjs",
+    "tsc": "tsc",
     "sqlite": "sqlite3 database.sqlite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
