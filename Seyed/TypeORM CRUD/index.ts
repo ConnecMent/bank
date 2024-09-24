@@ -18,17 +18,20 @@ async function main(){
     user.lName = "Mojtaba";
     user.age = 21;
 
-    createNewUser(user, userRepo);
-
     const post1 = new Post();
 
     post1.title = "post1";
     post1.content = "content1";
+    post1.user = user;
 
-    createNewPost(user, post1.title, post1.content, postRepo);
+    createNewUser(user, userRepo).then(() => createNewPost(user, post1.title, post1.content, postRepo));
 
-    showAllUser(userRepo);
-    showAllPost(postRepo);
+    // showAllUser(userRepo);
+    // showAllPost(postRepo);
+
+    // deleteUser(4,userRepo);
+    // deletePost(4,postRepo);
+    // deletePost(5,postRepo);
 }
 
 main()

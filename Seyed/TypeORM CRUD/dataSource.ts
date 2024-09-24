@@ -5,7 +5,7 @@ import { Post } from './PostEntity'
 
 export const dataSource = new DataSource({
     type: 'sqlite',
-    database: 'database.splite',
+    database: 'database.sqlite',
     synchronize: false,
     logging: false,
     entities: [User, Post],

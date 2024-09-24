@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from "typeorm";
 import { Post } from "./PostEntity";
 
 @Entity()
@@ -15,6 +15,6 @@ export class User{
     @Column()
     age!: number
 
-    @OneToMany(() => Post, post => post.user)
+    @OneToMany(() => Post, post => post.user, { cascade: true })
     post!: Post[]
 }

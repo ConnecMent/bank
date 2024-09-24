@@ -8,7 +8,7 @@ export async function createNewPost(user: User, title: string, content: string, 
         await repo.insert({
             title,
             content,
-            user: user
+            user: { id: user.id }
         });
         console.log("New post inserted successfuly!")
     }catch(error){
