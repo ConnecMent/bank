@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateTable1726576086744 implements MigrationInterface {
-    name = 'CreateTable1726576086744'
+export class CreateTable1727297908951 implements MigrationInterface {
+    name = 'CreateTable1727297908951'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -10,14 +10,6 @@ export class CreateTable1726576086744 implements MigrationInterface {
                 "title" varchar NOT NULL,
                 "content" varchar NOT NULL,
                 "userId" integer
-            )
-        `);
-        await queryRunner.query(`
-            CREATE TABLE "user" (
-                "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-                "fName" varchar NOT NULL,
-                "lName" varchar NOT NULL,
-                "age" integer NOT NULL
             )
         `);
         await queryRunner.query(`
@@ -69,9 +61,6 @@ export class CreateTable1726576086744 implements MigrationInterface {
         `);
         await queryRunner.query(`
             DROP TABLE "temporary_post"
-        `);
-        await queryRunner.query(`
-            DROP TABLE "user"
         `);
         await queryRunner.query(`
             DROP TABLE "post"

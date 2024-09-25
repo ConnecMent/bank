@@ -29,8 +29,8 @@ async function main(){
     // showAllUser(userRepo);
     // showAllPost(postRepo);
 
-    // deleteUser(4,userRepo);
-    // deletePost(4,postRepo);
+    // deleteUser(1,userRepo);
+    // deletePost(1,postRepo);
     // deletePost(5,postRepo);
 }
 
