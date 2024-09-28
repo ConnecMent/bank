@@ -1,17 +1,9 @@
 import { Repository } from "typeorm";
-import { dataSource } from "./dataSource2";
-import { User } from "./entity2";
+import { dataSource } from "./dataSource";
+import { User } from "./UserEntity";
+import { Post } from "./PostEntity";
 
-async function main(){
-    await dataSource.initialize();
-
-    await dataSource.runMigrations();
-}
-
-main()
-
-
-async function createNewUser(newUser: User, repo: Repository<User>){
+export async function createNewUser(newUser: User, repo: Repository<User>){
     try{
         const check = await repo.exists({
             where:{
@@ -31,16 +23,16 @@ async function createNewUser(newUser: User, repo: Repository<User>){
     };
 }
 
-async function showAllUser(repo: Repository<User>){
+export async function showAllUser(repo: Repository<User>){
     try{
-        const users = await repo.find()
+        const users = await repo.find({ relations: ['post']})
         console.log(users);
     }catch(error){
         console.error(error)
     }
 }
 
-async function updateUser(userId: number, updatedUser: User, repo: Repository<User>){
+export async function updateUser(userId: number, updatedUser: User, repo: Repository<User>){
     try{
         const check = await repo.exists({
             where:{
@@ -65,7 +57,7 @@ async function updateUser(userId: number, updatedUser: User, repo: Repository<Us
     }
 }
 
-async function deleteUser(userId: number, repo: Repository<User>){
+export async function deleteUser(userId: number, repo: Repository<User>){
     try{
         const check = await repo.exists({
             where:{
@@ -75,7 +67,7 @@ async function deleteUser(userId: number, repo: Repository<User>){
         
         if(check){
             await repo.delete(userId)
-                console.log("User deleted!")
+                console.log("The user deleted!")
         }else{
             console.log("The desired user does not exist!")
         }
