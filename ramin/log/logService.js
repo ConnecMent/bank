@@ -2,27 +2,30 @@ const pino = require('pino');
 const pinoRoll = require('pino-roll');
 
 
-const rollStream = pinoRoll({
-  frequency: 3600000, 
-  maxAge: '2h',
-  file: './empty', 
-});
-
-
 const logger = pino({
+  
   level: 'info',
+
   transport: {
     
     targets: [
-      { target: 'pino-pretty', },
-      { target: 'pino/file', options: { destination: './logfile'}}
+      { target: 'pino-pretty' , 
+        options : {
+        translateTime: 'yyyy-mm-dd HH:MM:ss',
+        ignore: 'pid,hostname'
+      },
+     },
+      { 
+        target:'pino-roll',
+          options : {
+            file: './log',
+            frequency:2*3600*1000,
+            mkdir:true,
+        }
+      }
     ],
-    options: {
-      colorize: true,
-      translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
-    },
   },
-}, rollStream);
+});
 
 setInterval(() => {
   const logLevels = ['fatal', 'error', 'warn', 'info', 'debug', 'trace'];
