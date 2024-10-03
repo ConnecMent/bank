@@ -1,21 +1,17 @@
 {
-  "name": "typeorm-basic",
+  "name": "typeorm-crud",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts",
-    "typeorm": "NODE_OPTIONS=--experimental-specifier-resolution=node typeorm-ts-node-esm",
-    "set": "set",
-    "type-ts": "npx typeorm-ts-node-commonjs",
+    "ts-node": "ts-node",
     "tsc": "tsc",
-    "sqlite": "sqlite3 database.sqlite",
+    "type-ts": "npx typeorm-ts-node-commonjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "node": "file:../../../../types",
     "reflect-metadata": "^0.2.2",
     "sqlite3": "^5.1.7",
     "ts-node": "^10.9.2",
