@@ -18,8 +18,8 @@ const logger = pino({
       { 
         target:'pino-roll',
           options : {
-            file: './log',
-            frequency:2*3600*1000,
+            file: process.env.MANUAL1,
+            frequency:parseInt(process.env.MANUAL2),
             mkdir:true,
         }
       }
