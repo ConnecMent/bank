@@ -1,8 +1,8 @@
-import { concept } from "./Concept";
+import { Concept } from "./Concept";
 
-class devConcept extends concept {
-  constructor(n: string, b: "architecture" | "clean-code" | "languages") {
-    super(n);
+class DevConcept extends Concept {
+  constructor(b: "architecture" | "clean-code" | "languages") {
+    super("devConcept");
     this.branch = b;
   }
 

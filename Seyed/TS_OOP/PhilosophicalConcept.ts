@@ -1,6 +1,6 @@
-import { concept } from "./Concept";
+import { Concept } from "./Concept";
 
-class philosophicalConcept extends concept {
+class PhilosophicalConcept extends Concept {
   private reasoning: string[];
 
   constructor(n: string, b: string) {
@@ -8,12 +8,8 @@ class philosophicalConcept extends concept {
     this.branch = b;
   }
 
-  get getBranch() {
-    return this.branch;
-  }
-
   set addReasoning(r: string[]): void {
-    this.reasoning = r;
+    this.reasoning.push(r);
   }
 
   isPersuading(): boolean {

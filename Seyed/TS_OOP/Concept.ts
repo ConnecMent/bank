@@ -1,4 +1,4 @@
-export abstract class concept {
+export abstract class Concept {
   protected name: string;
   protected branch: string;
 
@@ -6,7 +6,11 @@ export abstract class concept {
     this.name = n;
   }
 
-  abstract get get_name(): string;
+  getName(): string {
+    return this.name;
+  }
 
-  abstract get get_branch(): string;
+  getBranch(): string {
+    return this.branch;
+  }
 }
